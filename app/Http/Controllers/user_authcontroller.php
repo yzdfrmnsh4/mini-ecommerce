@@ -45,14 +45,16 @@ class user_authcontroller extends Controller
     public function register(Request $request)
     {
 
-
-        $request->validate([
+    
+        $cek = $request->validate([
             "email" => "required|unique:users,email",
             "name" => "required",
             "password" => "required|confirmed",
             "no_telp" => "required|unique:users,no_telp",
 
         ]);
+
+        // dd($cek);   
 
         try {
 
