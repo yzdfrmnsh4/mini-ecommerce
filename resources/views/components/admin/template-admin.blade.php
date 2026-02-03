@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf_token" content="{{ csrf_token() }}">
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -1211,10 +1211,19 @@
     </head>
 
     <body>
-        {{ $slot }}
+
+        <div class="flex w-full">
+            <x-admin.sidebar></x-admin.sidebar>
+            <div class="w-full">
+
+                {{ $slot }}
+            </div>
+        </div>
+
+
+
+
     </body>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <script></script>
 
     </html>
