@@ -1,28 +1,29 @@
- @props(['judul' => '', 'action', 'method', 'button' => 'true', 'back' => ''])
+ @props(['judul' => '','deskripsi' => '', 'action', 'method', 'button' => 'true', 'back' => ''])
 
- <div class="">
-     <form action="{{ $action }}" method="{{ $method }}" enctype="multipart/form-data"
-         class="flex flex-col items-center shadow-xl p-5 w-[60rem] justify-center">
-         @csrf
-
-
-         <h1 class="text-2xl font-semibold mb-8">{{ $judul }}</h1>
-         <div class="flex flex-col gap-6 container ">
-
-             {{ $slot }}
-             {{-- <x-input.form-input name="nama" label="test"></x-input.form-input> --}}
+ <div class="px-6 py-5 border-b border-gray-200">
+     <div class="flex items-center justify-between">
+         <div>
+             <h1 class="text-xl font-semibold text-gray-900">{{ $judul }}</h1>
+                 <p class="mt-1 text-sm text-gray-500">{{ $deskripsi }}</p>
          </div>
 
-
          @if ($button)
-             <div class="flex gap-2 w-full items-center mt-[2rem]">
-                 <a href="{{ $back ? $back : url()->previous() }}"
-                     class="bg-slate-200 flex justify-center text-slate-800 border border-slate-800 w-full p-4 h-fit rounded-md ">Kembali</a>
-                 <button class="bg-blue-800 text-white w-full p-4 rounded-md ">Tambah Data</button>
-
-
-             </div>
+             <a href="{{ $back ? $back : url()->previous() }}"
+                 class="text-gray-600 hover:text-gray-900 text-sm font-medium flex items-center gap-1">
+                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                         d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                 </svg>
+                 Kembali
+             </a>
          @endif
-     </form>
 
+
+     </div>
  </div>
+
+ <form action="{{ $action }}" method="{{ $method }}" enctype="multipart/form-data" class="p-6 space-y-6">
+     @csrf
+
+    {{ $slot }}
+ </form>
