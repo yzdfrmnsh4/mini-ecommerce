@@ -1,9 +1,31 @@
 <x-admin.template-admin>
-    <div class="max-w-6xl mx-auto py-8">
-        <x-container>
+    <div class="max-w-4xl mx-auto py-8">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+
+            <!-- Header -->
+            <div class="px-6 py-5 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-xl font-semibold text-gray-900">Tambah Produk Baru</h1>
+                        <p class="mt-1 text-sm text-gray-500">Tambahkan produk baru ke katalog toko Anda</p>
+                    </div>
+
+                    <a href="{{ route('admin.produk.view') }}"
+                        class="text-gray-600 hover:text-gray-900 text-sm font-medium flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Kembali
+                    </a>
+                </div>
+            </div>
+
             <!-- Form -->
-            <x-form back="{{ route('admin.produk.view') }}" action="{{ route('admin.add_produk.post') }}" method="post"
-                judul="Tambah Produk Baru" deskripsi="Tambahkan produk baru ke katalog toko Anda">
+            <form action="{{ route('admin.add_produk.post') }}" method="POST" enctype="multipart/form-data"
+                class="p-6 space-y-6">
+                @csrf
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Nama Produk -->
                     <div>
@@ -48,23 +70,22 @@
                     @enderror
                 </div>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Ukuran -->
+            <x-input.form-input  type="multiselect" name="ukuran" label="Ukuran Tersedia">
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+            </x-input.form-input>
+
                     <!-- Kategori -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">
-                            Kategori <span class="text-red-500">*</span>
-                        </label>
-                        <select name="kategori[]" multiple required
-                            class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2.5 px-4 h-32">
-                            @foreach ($kategori as $item)
-                                <option value="{{ $item->id }}">{{ $item->kategori }}</option>
-                            @endforeach
-                        </select>
-                        <p class="mt-1 text-xs text-gray-500">Tekan Ctrl/Cmd untuk memilih beberapa kategori</p>
-                        @error('kategori')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
+            <x-input.form-input type="multiselect"  name="kategori" label="Kategori">
+                @foreach ($kategori as $item)
+                    <option value="{{ $item->id }}">{{ $item->kategori }}</option>
+                @endforeach
+            </x-input.form-input>
 
                 <!-- Foto -->
                 <div>
@@ -90,8 +111,7 @@
                         Tambah Produk
                     </button>
                 </div>
-            </x-form>
-        </x-container>
-
+            </form>
+        </div>
     </div>
 </x-admin.template-admin>

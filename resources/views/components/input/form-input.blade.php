@@ -1,11 +1,11 @@
-@props(['name' => '', 'label' => '', 'type' => 'text', 'value' => null])
+@props(['name' => '', 'label' => '', 'type' => 'text', 'value' => null, 'placeholder' => ''])
 
-<div class="flex flex-col  flex-1 gap-2">
-    <label for="">{{ $label }}</label>
+<div>
+    <label for="{{ $name }}" class="block text-sm font-medium text-gray-700 mb-1">{{ $label }}</label>
 
     @if ($type === 'area')
-        <x-input.textarea class="border h-[8rem] border-slate-600 " type="{{ $type }}"
-            placeholder="{{ $name }}" name="{{ $name }}">
+        <x-input.textarea class="h-[8rem] " type="{{ $type }}" placeholder="{{ $placeholder }}"
+            name="{{ $name }}">
 
             {{ old($name, $value) }}</x-input.textarea>
     @elseif ($type === 'select')
@@ -18,7 +18,7 @@
             {{ $slot }}
         </x-input.select>
     @else
-        <x-input.input class="border border-slate-600" value="{{ $value }}" type="{{ $type }}"
+        <x-input.input class="" value="{{ $value }}" type="{{ $type }}"
             placeholder="{{ $name }}" name="{{ $name }}"></x-input.input>
     @endif
 </div>

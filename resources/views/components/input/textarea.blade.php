@@ -1,7 +1,6 @@
 @props(['name', 'value' => '', 'placeholder' => '', 'type' => 'text'])
 
-<textarea style="  
-    line-height: 1;   vertical-align: top;" type="{{ $type }}" name="{{ $name }}"
+<textarea class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2.5 px-4" type="{{ $type }}" name="{{ $name }}"
     value="{{ old($name, $value) }}" placeholder="{{ $placeholder }}"
     {{ $attributes->merge([
         'class' =>

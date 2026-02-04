@@ -4,7 +4,7 @@
      <div class="flex items-center justify-between">
          <div>
              <h1 class="text-xl font-semibold text-gray-900">{{ $judul }}</h1>
-                 <p class="mt-1 text-sm text-gray-500">{{ $deskripsi }}</p>
+              <p class="mt-1 text-sm text-gray-500">{{ $deskripsi }}</p>
          </div>
 
          @if ($button)

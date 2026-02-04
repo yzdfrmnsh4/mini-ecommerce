@@ -6,7 +6,7 @@
                 C
             </div>
             <div>
-                <h1 class="text-xl font-bold text-gray-900">Creatovis</h1>
+                <h1 class="text-xl font-bold text-gray-900">Caysie.today</h1>
                 <p class="text-xs text-gray-500">Premium</p>
             </div>
         </div>
@@ -24,20 +24,20 @@
         <x-admin.sidelink 
             href="{{ route('admin.produk.view') }}" 
             icon="package"
-            :active="request()->routeIs('admin.produk.view')">
+            :active="request()->routeIs('admin.produk.view', 'admin.add_produk.view','admin.edit_produk.post' )">
             Produk
         </x-admin.sidelink>
 
         <x-admin.sidelink 
             href="{{ route('admin.kategori.view') }}" 
-            icon="layers"
-            :active="request()->routeIs('admin.kategori.view', 'admin.add_kategori.view')">
+            icon="category"
+            :active="request()->routeIs('admin.kategori.view', 'admin.add_kategori.view', 'admin.edit_kategori.view')">
             Kategori
         </x-admin.sidelink>
         <x-admin.sidelink 
             href="{{ route('user_management_view') }}" 
-            icon="layers"
-            :active="request()->routeIs('user_management_add_view', 'user_management_edit_view')">
+            icon="user"
+            :active="request()->routeIs('user_management_view','user_management_add_view', 'user_management_edit_view')">
             User Management
         </x-admin.sidelink>
     </nav>
@@ -49,8 +49,14 @@
                 M
             </div>
             <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-gray-900 truncate">Mateusz Woźniak</p>
-                <p class="text-xs text-gray-500 truncate">mateusz@widlab.co</p>
+                           @auth
+                    <p class="text-sm font-medium text-gray-900 truncate">{{ Auth::user()->name ?? 'user' }}</p>
+                    <p class="text-xs font-medium text-gray-500 truncate">{{ Auth::user()->email ?? 'user@gmail.com' }}</p>
+                @else
+                    <p class="text-sm font-medium text-gray-900 truncate">{{ Auth::user()->name ?? 'user' }}</p>
+                @endauth
+                {{-- <p class="text-sm font-medium text-gray-900 truncate">Mateusz Woźniak</p>
+                <p class="text-xs text-gray-500 truncate">mateusz@widlab.co</p> --}}
             </div>
             <button class="text-gray-400 hover:text-gray-600">
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
