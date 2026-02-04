@@ -16,6 +16,6 @@
     },
     "dependencies": {
         "sweetalert2": "^11.26.18",
-        "tom-select": "^2.4.4"
+        "tom-select": "^2.4.5"
     }
 }
