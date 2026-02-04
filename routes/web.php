@@ -44,6 +44,10 @@ Route::prefix('admin')->group(function () {
 
     route::get("produk", [produkController::class, 'index'])->name("admin.produk.view");
     route::get("add_produk_view", [produkController::class, 'add_produk_view'])->name("admin.add_produk.view");
+    route::get("edit_produk_view/{id}", [produkController::class, 'edit_produk_view'])->name("admin.edit_produk.view");
+    route::post("add_produk_post", [produkController::class, 'add_produk_post'])->name("admin.add_produk.post");
+    route::post("edit_produk_post/{id}", [produkController::class, 'edit_produk_post'])->name("admin.edit_produk.post");
+    route::post("delete_produk_post/{id}", [produkController::class, 'delete_prod_post'])->name("admin.delete_produk.post");
 
 
 });

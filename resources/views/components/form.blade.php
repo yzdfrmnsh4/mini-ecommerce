@@ -1,7 +1,7 @@
  @props(['judul' => '', 'action', 'method', 'button' => 'true', 'back' => ''])
 
  <div class="">
-     <form action="{{ $action }}" method="{{ $method }}"
+     <form action="{{ $action }}" method="{{ $method }}" enctype="multipart/form-data"
          class="flex flex-col items-center shadow-xl p-5 w-[60rem] justify-center">
          @csrf
 

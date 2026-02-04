@@ -1,4 +1,4 @@
-@props(['name' => '', 'label' => '', 'type' => 'text', 'value' => ''])
+@props(['name' => '', 'label' => '', 'type' => 'text', 'value' => null])
 
 <div class="flex flex-col  flex-1 gap-2">
     <label for="">{{ $label }}</label>
@@ -14,7 +14,7 @@
 
         </x-input.select>
     @elseif ($type === 'multiselect')
-        <x-input.select value="{{ $value }}" :multiple="true" name="{{ $name }}">
+        <x-input.select :value="$value" :multiple="true" name="{{ $name }}">
             {{ $slot }}
         </x-input.select>
     @else
