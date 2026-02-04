@@ -2,7 +2,7 @@
 
     <div class="h-screen w-full flex justify-center items-center">
         <x-form back="{{ route('admin.kategori.view') }}" action="{{ route('admin.kategori.post', $id) }}" method="post"
-            judul="Tambah kategori">
+            judul="Edit kategori">
             <x-input.form-input value="{{ $kategori->kategori }}" name="kategori" type="text"
                 label="nama kategori"></x-input.form-input>
             <x-input.form-input value="{{ $kategori->deskripsi }}" name="deskripsi" type="area"

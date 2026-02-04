@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf_token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
 
@@ -1208,9 +1209,33 @@
                 }
             </style>
         @endif
+
+        @php
+            if (Auth::check()) {
+                $keranjang = \App\Models\keranjang::where('id_user', Auth::user()->id)->pluck('qty');
+            }
+        @endphp
     </head>
 
     <body>
+        <nav class="sticky top-0 w-full bg-white shadow-md z-50">
+            <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">StyleHub</div>
+                <ul class="flex gap-8">
+                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Home</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Produk</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Tentang</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Kontak</a></li>
+                </ul>
+                @if (Auth::check())
+                    <button class="relative text-gray-600 hover:text-gray-800">
+                        <span class="text-2xl">🛒</span>
+                        <span
+                            class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{{ $keranjang }}</span>
+                    </button>
+                @endif
+            </div>
+        </nav>
         {{ $slot }}
     </body>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

@@ -20,10 +20,6 @@
     <!-- Table Card -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
 
-        <!-- Table Header / Toolbar (opsional bisa ditambah search/filter nanti) -->
-        <div class="px-6 py-5 border-b border-gray-200">
-            <h2 class="text-lg font-medium text-gray-900">Daftar Kategori</h2>
-        </div>
 
         <!-- Table -->
         <div class="overflow-x-auto">

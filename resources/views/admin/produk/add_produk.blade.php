@@ -48,24 +48,6 @@
                     @enderror
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Ukuran -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Ukuran Tersedia</label>
-                        <select name="ukuran[]" multiple
-                            class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2.5 px-4 h-32">
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
-                        </select>
-                        <p class="mt-1 text-xs text-gray-500">Tekan Ctrl/Cmd untuk memilih beberapa ukuran</p>
-                        @error('ukuran')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
                     <!-- Kategori -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">

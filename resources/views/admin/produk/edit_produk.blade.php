@@ -4,7 +4,7 @@
 
     <div class="h-screen w-full flex justify-center items-center">
         <x-form back="{{ route('admin.produk.view') }}" action="{{ route('admin.edit_produk.post', $produk->id) }}"
-            method="post" judul="Tambah kategori">
+            method="post" judul="Edit Produk">
             <div class="flex gap-2 ">
                 <x-input.form-input name="nama_prod" type="text" value="{{ $produk->nama_prod }}"
                     label="Nama Produk"></x-input.form-input>

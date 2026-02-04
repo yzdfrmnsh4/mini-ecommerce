@@ -34,6 +34,12 @@
             :active="request()->routeIs('admin.kategori.view', 'admin.add_kategori.view')">
             Kategori
         </x-admin.sidelink>
+        <x-admin.sidelink 
+            href="{{ route('user_management_view') }}" 
+            icon="layers"
+            :active="request()->routeIs('user_management_add_view', 'user_management_edit_view')">
+            User Management
+        </x-admin.sidelink>
     </nav>
 
     <!-- User Profile (Bottom) -->
