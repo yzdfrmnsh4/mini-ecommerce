@@ -28,7 +28,12 @@ class user_authcontroller extends Controller
 
             $request->session()->regenerate();
 
-            return response()->json("berhasil login " . Auth::user()->name);
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.dashboard.view');
+            } elseif (Auth::user()->role === 'pembeli') {
+                return redirect()->route('/');
+
+            }
         }
 
 
@@ -45,7 +50,7 @@ class user_authcontroller extends Controller
     public function register(Request $request)
     {
 
-    
+
         $cek = $request->validate([
             "email" => "required|unique:users,email",
             "name" => "required",

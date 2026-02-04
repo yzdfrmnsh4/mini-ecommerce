@@ -5,13 +5,17 @@ use App\Http\Controllers\admin\kategori;
 use App\Http\Controllers\admin\produkController;
 use App\Http\Controllers\admin\userManagement;
 use App\Http\Controllers\adminDashboard;
+use App\Http\Controllers\user\landingpage;
+use App\Http\Controllers\user\produk;
 use App\Http\Controllers\user_authcontroller;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-Route::get('/', function () {
-    return view('test');
-});
+Route::get('/', [landingpage::class, 'index'])->name("/");
+
+//produk di user
+Route::get('/produk_a/{id}', [produk::class, 'detail_produk'])->name("detail_produk");
+
 
 //register dan login
 route::get("login", [user_authcontroller::class, 'login_view'])->name("login_view");
@@ -25,6 +29,9 @@ route::post("register", [user_authcontroller::class, 'register'])->name("registe
 //edit profile user
 route::get("edit_profile", [user_authcontroller::class, 'edit_view'])->name("edit_view");
 route::post("edit_profile/{id}", [user_authcontroller::class, 'edit'])->name("edit.post");
+route::post("add_cart/{id}", [produk::class, 'add_cart'])->name("add_cart_post");
+
+
 
 
 //admin
