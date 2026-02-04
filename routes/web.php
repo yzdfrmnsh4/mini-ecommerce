@@ -29,9 +29,12 @@ route::post("register", [user_authcontroller::class, 'register'])->name("registe
 //edit profile user
 route::get("edit_profile", [user_authcontroller::class, 'edit_view'])->name("edit_view");
 route::post("edit_profile/{id}", [user_authcontroller::class, 'edit'])->name("edit.post");
+
+//bagian checkout dan masukin ke keranjang
+route::get("detail_keranjang", [produk::class, 'detail_keranjang'])->name("detail_keranjang");
 route::post("add_cart/{id}", [produk::class, 'add_cart'])->name("add_cart_post");
-
-
+route::post("saveQty", [produk::class, 'saveQty'])->name("saveQty");
+route::post("deleteQty/{id}", [produk::class, 'deleteQty'])->name("deleteQty");
 
 
 //admin

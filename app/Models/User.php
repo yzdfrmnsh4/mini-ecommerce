@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function keranjang(): BelongsToMany
     {
-        return $this->belongsToMany(produk::class, 'keranjang', 'id_user', 'id_produk')->withPivot(['qty', 'ukuran']);
+        return $this->belongsToMany(produk::class, 'keranjang', 'id_user', 'id_produk')->withPivot(['qty', 'ukuran', 'id']);
     }
 
 

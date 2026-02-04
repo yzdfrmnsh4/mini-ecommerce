@@ -1228,11 +1228,11 @@
                     <li><a href="#" class="text-gray-600 hover:text-gray-800">Kontak</a></li>
                 </ul>
                 @if (Auth::check())
-                    <button class="relative text-gray-600 hover:text-gray-800">
+                    <a href="{{ route('detail_keranjang') }}" class="relative text-gray-600 hover:text-gray-800">
                         <span class="text-2xl">🛒</span>
                         <span
                             class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{{ $keranjang }}</span>
-                    </button>
+                    </a>
                 @endif
             </div>
         </nav>
