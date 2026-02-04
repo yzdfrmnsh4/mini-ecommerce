@@ -74,10 +74,10 @@
                             <div class="flex gap-3">
                                 @foreach (json_decode($produk->ukuran) as $item)
                                     <div class="">
-                                        <input type="radio" {{ old('ukuran') === $item ? 'checked' : '' }}
+                                        <input type="radio" {{ old('ukuran') == $item ? 'checked' : '' }}
                                             name="size" class="peer hidden" value="{{ $item }}"
-                                            id="xs">
-                                        <label for="xs"
+                                            id="{{ $item }}">
+                                        <label for="{{ $item }}"
                                             class="px-6 py-2 border-2 border-gray-300 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 text-gray-600 hover:border-blue-600 hover:text-blue-600 font-semibold transition">
                                             {{ $item }}
                                         </label>

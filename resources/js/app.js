@@ -19,6 +19,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".rupiah").forEach((element) => {
+        const number = parseInt(element.textContent.replace(/[^\d]/g, ""));
+        element.textContent = number.toLocaleString("id-ID");
+    });
+
+    window.formatRupiah = function (angka) {
+        return angka.toLocaleString("id-ID");
+    };
+
     window.confirmation = function (url, pertanyaan = null, method = "get") {
         Swal.fire({
             title: "Yakin?",
