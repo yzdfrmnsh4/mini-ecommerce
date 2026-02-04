@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\adminDashboard as AdminAdminDashboard;
 use App\Http\Controllers\admin\kategori;
 use App\Http\Controllers\admin\produkController;
+use App\Http\Controllers\admin\userManagement;
 use App\Http\Controllers\adminDashboard;
 use App\Http\Controllers\user_authcontroller;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,13 @@ Route::prefix('admin')->group(function () {
     route::post("edit_produk_post/{id}", [produkController::class, 'edit_produk_post'])->name("admin.edit_produk.post");
     route::post("delete_produk_post/{id}", [produkController::class, 'delete_prod_post'])->name("admin.delete_produk.post");
 
+
+    //user management
+    route::get("user_management", [userManagement::class, 'index'])->name("user_management_view");
+    route::get("user_management_add_view", [userManagement::class, 'user_management_add_view'])->name("user_management_add_view");
+    route::get("user_management_edit_view/{id}", [userManagement::class, 'user_management_edit_view'])->name("user_management_edit_view");
+    route::post("user_management_add_update_post/{id?}", [userManagement::class, 'user_management_add_update_post'])->name("user_management_add_update_post");
+    route::post("user_management_delete/{id}", [userManagement::class, 'user_management_delete'])->name("user_management_delete");
 
 });
 

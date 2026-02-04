@@ -9,12 +9,12 @@
 
             {{ old($name, $value) }}</x-input.textarea>
     @elseif ($type === 'select')
-        <x-input.select value="{{ $value }}" name="{{ $name }}">
+        <x-input.select :value="old($name, $value)" name="{{ $name }}">
             {{ $slot }}
 
         </x-input.select>
     @elseif ($type === 'multiselect')
-        <x-input.select :value="$value" :multiple="true" name="{{ $name }}">
+        <x-input.select :value="old($name, $value)" :multiple="true" name="{{ $name }}">
             {{ $slot }}
         </x-input.select>
     @else

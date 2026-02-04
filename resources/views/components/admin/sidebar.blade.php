@@ -5,4 +5,5 @@
     <x-admin.sidelink href="{{ route('admin.dashboard.view') }}">Dashboard</x-admin.sidelink>
     <x-admin.sidelink href="{{ route('admin.kategori.view') }}" :active="[route('admin.add_kategori.view')]">Kategori</x-admin.sidelink>
     <x-admin.sidelink href="{{ route('admin.produk.view') }}">produk</x-admin.sidelink>
+    <x-admin.sidelink href="{{ route('user_management_view') }}">User Management</x-admin.sidelink>
 </div>
