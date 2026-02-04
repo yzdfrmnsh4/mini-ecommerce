@@ -4,7 +4,7 @@
 
     <div class="h-screen w-full flex justify-center items-center">
         <x-form back="{{ route('admin.produk.view') }}" action="{{ route('admin.add_produk.post') }}" method="post"
-            judul="Tambah kategori">
+            judul="Tambah Produk">
             <div class="flex gap-2 ">
                 <x-input.form-input name="nama_prod" type="text" label="Nama Produk"></x-input.form-input>
                 <x-input.form-input name="harga" type="text" label="Harga baju"></x-input.form-input>

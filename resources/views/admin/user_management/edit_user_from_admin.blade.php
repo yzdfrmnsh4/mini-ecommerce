@@ -1,8 +1,8 @@
 <x-admin.template-admin>
 
     <div class="h-screen w-full flex justify-center items-center">
-        <x-form back="{{ route('admin.kategori.view') }}"
-            action="{{ route('user_management_add_update_post', $user->id) }}" method="post" judul="Tambah kategori">
+        <x-form back="{{ route('user_management_view') }}"
+            action="{{ route('user_management_add_update_post', $user->id) }}" method="post" judul="Edit User">
             <div class="flex gap-2">
                 <x-input.form-input value="{{ $user->name }}" name="name" type="text"
                     label="Nama user"></x-input.form-input>

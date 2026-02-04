@@ -5,7 +5,10 @@
 
 @php
 
-    $isActive = request()->fullUrlIs($active) || request()->fullUrlIs($href) ? true : false;
+    $isActive =
+        collect((array) $active)->contains(fn($route) => request()->routeIs($route)) || request()->fullUrlIs($href)
+            ? true
+            : false;
 @endphp
 <div class="flex flex-col">
     <a href="{{ $href }}"
