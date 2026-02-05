@@ -107,7 +107,7 @@ class produk extends Controller
         $data = (new transaksi($request->qty, $request->size, $request->harga, $id))->saveHeadTrans();
         $cek = $data->saveDetail($data->headtrans->id);
 
-        dd($cek);
+        return redirect()->route('pesanan_saya_view');
 
     }
 

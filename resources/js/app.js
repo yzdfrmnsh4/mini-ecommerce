@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 form.method = "POST";
                 form.action = url;
                 const token = document
-                    .querySelector('meta[name="csrf_token"]')
+                    .querySelector('meta[name="csrf-token"]')
                     .getAttribute("content");
                 form.innerHTML = `
         <input type="hidden" name="_token" value="${token}">
