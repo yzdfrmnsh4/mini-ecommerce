@@ -7,7 +7,7 @@
             <!-- Header Profile -->
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-10 border border-gray-100">
                 <div class="h-48 bg-gradient-to-r from-indigo-600 to-indigo-800 relative">
-                    <div class="absolute -bottom-16 right-24 w-32 h-32 rounded-full border-4 border-white overflow-hidden bg-gray-200 shadow-xl">
+                    <div class="absolute -bottom-16 left-7 w-32 h-32 rounded-full border-4 border-white overflow-hidden bg-gray-200 shadow-xl">
                         <!-- Foto profil (placeholder, ganti dengan Auth::user()->foto jika ada) -->
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
                              alt="Foto Profil" 
