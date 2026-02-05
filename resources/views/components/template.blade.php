@@ -1219,26 +1219,61 @@
         @endphp
     </head>
 
-    <body>
-        <nav class="sticky top-0 w-full bg-white shadow-md z-50">
-            <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-                <div class="text-2xl font-bold text-gray-800">StyleHub</div>
-                <ul class="flex gap-8">
-                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Home</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Produk</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Tentang</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Kontak</a></li>
-                </ul>
-                @if (Auth::check())
-                    <a href="{{ route('detail_keranjang') }}" class="relative text-gray-600 hover:text-gray-800">
-                        <span class="text-2xl">🛒</span>
-                        <span
-                            class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{{ $keranjang }}</span>
-                    </a>
-                @endif
-            </div>
-        </nav>
+    <body class="antialiased bg-white font-sans">
+        <x-navbar></x-navbar>
         {{ $slot }}
+
+        <footer class="bg-gray-900 text-gray-300 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-4">Caysie.today</h4>
+                        <p class="text-sm">Platform fashion terpercaya dengan koleksi berkualitas tinggi untuk gaya
+                            modern Anda.</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-white mb-4">Belanja</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Semua Koleksi</a></li>
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Edisi Musim Dingin</a>
+                            </li>
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Diskon</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-white mb-4">Perusahaan</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Tentang Kami</a></li>
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Kontak</a></li>
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Afiliasi</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-white mb-4">Bantuan</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">FAQ</a></li>
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Kebijakan Cookie</a>
+                            </li>
+                            <li><a href="#" class="hover:text-indigo-400 transition-colors">Syarat Penggunaan</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-sm">
+                    <p>&copy; {{ date('Y') }} Caysie.today. Seluruh hak cipta dilindungi.</p>
+                    <div class="mt-4 md:mt-0 flex gap-6">
+                        <span class="text-gray-400">Visa</span>
+                        <span class="text-gray-400">Mastercard</span>
+                        <span class="text-gray-400">PayPal</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </body>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
