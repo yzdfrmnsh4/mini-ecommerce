@@ -84,6 +84,12 @@ class user_authcontroller extends Controller
 
 
     }
+
+    public function profile()
+    {
+        return view('user.pesanan_saya');
+    }
+
     public function edit_view()
     {
         $data['data'] = Auth::user();

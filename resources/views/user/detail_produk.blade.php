@@ -4,16 +4,6 @@
         <!-- Navbar -->
 
 
-        <!-- Breadcrumb -->
-        {{-- <div class="pt-24 pb-4 bg-white">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="text-sm text-gray-600">
-                    <a href="#" class="hover:text-blue-600">Home</a> /
-                    <a href="#" class="hover:text-blue-600">Produk</a> /
-                    <span class="text-gray-900">Kaos Casual Premium</span>
-                </div>
-            </div>
-        </div> --}}
 
         <!-- Detail Produk -->
         <section class="py-12 ">

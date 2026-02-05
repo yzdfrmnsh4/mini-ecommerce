@@ -98,8 +98,8 @@
                                 {{ $item->deskripsi }}
                             </p>
                             <div class="flex items-center justify-between">
-                                <span class="text-2xl font-extrabold text-indigo-600">
-                                    Rp {{ number_format($item->harga, 0, ',', '.') }}
+                                <span class="rupiah text-2xl font-extrabold text-indigo-600">
+                                    Rp {{ $item->harga}}
                                 </span>
                                 <a href="{{ route('detail_produk', $item->id) }}"
                                    class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-md">
