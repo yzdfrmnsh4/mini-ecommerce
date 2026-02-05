@@ -5,8 +5,8 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Available to payout -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Available to payout</h3>
-            <p class="text-3xl font-bold text-gray-900 mt-2">$16.4K</p>
+            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Jumlah Produk</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-2">164</p>
             <p class="text-sm text-gray-500 mt-1">
                 Payout • $2.6K will be available soon
             </p>
@@ -14,9 +14,9 @@
 
         <!-- Today revenue -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Today revenue</h3>
+            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Jumlah User</h3>
             <div class="flex items-baseline gap-3 mt-2">
-                <p class="text-3xl font-bold text-indigo-600">$2.6K</p>
+                <p class="text-3xl font-bold text-indigo-600">2.6K</p>
                 <span class="text-sm font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">+14%</span>
             </div>
             <p class="text-sm text-gray-500 mt-1">28.6K • 28 orders</p>
@@ -24,7 +24,7 @@
 
         <!-- Today sessions -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Today sessions</h3>
+            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Total Transaksi</h3>
             <div class="flex items-baseline gap-3 mt-2">
                 <p class="text-3xl font-bold text-gray-900">366</p>
                 <span class="text-sm font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">+27%</span>
@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <!-- Device & Audience -->
+    {{-- <!-- Device & Audience -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Device Breakdown -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -189,7 +189,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 </div>
 </x-admin.template-admin>
