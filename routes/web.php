@@ -28,7 +28,8 @@ route::post("register", [user_authcontroller::class, 'register'])->name("registe
 
 // Profile Use
 
-Route::get('profile_view', [user_authcontroller::class, 'profile'])->name("profile_view");
+// Route::get('', [user_authcontroller::class, 'profile'])->name("profile_view");
+Route::get('pesanan_saya', [user_authcontroller::class, 'pesanan_saya_view'])->name("profile_view");
 //edit profile user
 route::get("edit_profile", [user_authcontroller::class, 'edit_view'])->name("edit_view");
 route::post("edit_profile/{id}", [user_authcontroller::class, 'edit'])->name("edit.post");

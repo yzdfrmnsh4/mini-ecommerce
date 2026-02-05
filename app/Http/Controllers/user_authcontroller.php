@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\addAcount;
+use App\Models\headTransaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,9 +86,14 @@ class user_authcontroller extends Controller
 
     }
 
-    public function profile()
+
+
+
+
+    public function pesanan_saya_view()
     {
-        return view('user.pesanan_saya');
+        $data['pesanan'] = headTransaksi::with(['detail_transaksi'])->get();
+        return view('user.pesanan_saya', $data);
     }
 
     public function edit_view()
