@@ -34,7 +34,7 @@ class addAcount
             $request->role,
             $request->id,
         );
-    }
+}
 
     public function delete($id)
     {
