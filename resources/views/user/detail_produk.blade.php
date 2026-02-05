@@ -33,8 +33,11 @@
                     </div>
 
                     <!-- Info Produk -->
-                    <form method="post" class="w-[50%]">
+                    <form method="post" id="form_checkout" action="{{ route('checkout_normal_post', $produk->id) }}"
+                        class="w-[50%]">
                         <!-- Kategori -->
+                        @csrf
+                        <input type="hidden" name="harga" value="{{ $produk->harga }}">
                         <div class="mb-4 flex gap-2">
 
                             @foreach ($produk->kategori as $item)
@@ -74,9 +77,9 @@
                             <div class="flex gap-3">
                                 @foreach (json_decode($produk->ukuran) as $item)
                                     <div class="">
-                                        <input type="radio" {{ old('ukuran') == $item ? 'checked' : '' }}
-                                            name="size" class="peer hidden" value="{{ $item }}"
-                                            id="{{ $item }}">
+
+                                        <input type="radio" name="size" {{ old('size') == $item ? 'checked' : '' }}
+                                            class="peer hidden" value="{{ $item }}" id="{{ $item }}">
                                         <label for="{{ $item }}"
                                             class="px-6 py-2 border-2 border-gray-300 rounded-lg peer-checked:border-blue-600 peer-checked:text-blue-600 text-gray-600 hover:border-blue-600 hover:text-blue-600 font-semibold transition">
                                             {{ $item }}
@@ -101,7 +104,7 @@
                                     class="bg-gray-200 flex items-center justify-center hover:bg-gray-300 text-gray-800 font-semibold w-10 h-10 rounded-lg transition">
                                     -
                                 </a>
-                                <input type="number" id="qty" value="1"
+                                <input type="number" id="qty" value="1" name="qty"
                                     class="w-16 text-center border-2 border-gray-300 rounded-lg py-2 font-semibold focus:outline-none focus:border-blue-600">
                                 <a id="plus"
                                     class="bg-gray-200 items-center justify-center flex hover:bg-gray-300 text-gray-800 font-semibold w-10 h-10 rounded-lg transition">
@@ -117,7 +120,7 @@
                                 <span class="text-xl">🛒</span>
                                 Tambah ke Keranjang
                             </a>
-                            <button
+                            <button onclick="add_action()" type="button"
                                 class="flex-1 bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition">
                                 Beli Sekarang
                             </button>
@@ -241,9 +244,11 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
+
             const minusBtn = document.getElementById('minus');
             const plusBtn = document.getElementById('plus');
             const qtyInput = document.getElementById('qty');
+            const checkoutFrom = document.getElementById('form_checkout');
 
             plusBtn.addEventListener('click', () => {
                 qtyInput.value = parseInt(qtyInput.value) + 1;
@@ -276,12 +281,26 @@
         <input type="hidden" name="_token" value="${token}">
         <input type="hidden" name="_method" value="post">
         <input type="hidden" name="qty" value="${qtyInput.value}">
-        <input type="hidden" name="ukuran" value="${document.querySelector("input[name='size']").value}">
+        <input type="hidden" name="ukuran" value="${document.querySelector("input[name='size']:checked")?.value}">
     `;
 
                 document.body.appendChild(form);
                 form.submit();
             })
+
+
+
+
+            window.add_action = function() {
+                confirmAction("Apakah anda yakin akan checkout produk ini?").then((result) => {
+                    if (result.isConfirmed) {
+                        checkoutFrom.submit();
+                    }
+                }).catch((err) => {
+                    console.log(err);
+
+                });
+            }
         })
     </script>
 

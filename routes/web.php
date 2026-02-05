@@ -37,6 +37,12 @@ route::post("saveQty", [produk::class, 'saveQty'])->name("saveQty");
 route::post("deleteQty/{id}", [produk::class, 'deleteQty'])->name("deleteQty");
 
 
+
+
+route::post("checkout/{id}", [produk::class, 'checkout'])->name("checkout_normal_post");
+route::post("checkout_from_cart", [produk::class, 'checkout_from_cart'])->name("checkout_from_cart");
+
+
 //admin
 
 Route::prefix('admin')->group(function () {

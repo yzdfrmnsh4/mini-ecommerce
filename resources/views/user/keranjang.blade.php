@@ -42,6 +42,14 @@
                             @foreach ($keranjang as $item)
                                 <!-- Row 1 -->
 
+                                <input name="id_produk[{{ $item->pivot->id }}]" value="{{ $item->id }}"
+                                    type="hidden">
+
+                                <input name="ukuran[{{ $item->pivot->id }}]" value="{{ $item->pivot->ukuran }}"
+                                    type="hidden">
+
+                                <input name="harga[{{ $item->pivot->id }}]" value="{{ $item->harga }}" type="hidden">
+
                                 @php
                                     $total = (int) $item->pivot->qty * (int) $item->harga;
                                     $grandtotal += $total;
@@ -129,7 +137,7 @@
 
                             <!-- Buttons -->
                             <div class="space-y-3">
-                                <button
+                                <button onclick="checkout()"
                                     class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition">
                                     Lanjut ke Checkout
                                 </button>
@@ -182,6 +190,21 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
+
+            const form = document.getElementById("saveperubahan");
+            window.checkout = function(params) {
+
+                confirmAction("apakah anda yakin akan mengcheckout semua produk ini?").then((result) => {
+                    if (result.isConfirmed) {
+                        form.action = "{{ route('checkout_from_cart') }}"
+                        form.submit();
+                    }
+
+                }).catch((err) => {
+                    console.log(err);
+
+                });
+            }
 
             window.saveData = function() {
                 document.getElementById("saveperubahan").submit();

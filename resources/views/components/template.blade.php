@@ -1212,7 +1212,9 @@
 
         @php
             if (Auth::check()) {
-                $keranjang = \App\Models\keranjang::where('id_user', Auth::user()->id)->pluck('qty');
+                $keranjang = \App\Models\keranjang::where('id_user', Auth::user()->id)
+                    ->pluck('qty')
+                    ->sum();
             }
         @endphp
     </head>

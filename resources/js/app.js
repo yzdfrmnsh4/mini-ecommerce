@@ -28,6 +28,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return angka.toLocaleString("id-ID");
     };
 
+    window.confirmAction = function (pertanyaan = "Aksi ini akan dijalankan") {
+        return Swal.fire({
+            title: "Yakin?",
+            text: pertanyaan,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Ya, lanjut",
+            cancelButtonText: "Batal",
+        });
+    };
+
     window.confirmation = function (url, pertanyaan = null, method = "get") {
         Swal.fire({
             title: "Yakin?",
