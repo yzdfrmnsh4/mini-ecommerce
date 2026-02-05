@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -58,6 +59,15 @@ class User extends Authenticatable
     public function keranjang(): BelongsToMany
     {
         return $this->belongsToMany(produk::class, 'keranjang', 'id_user', 'id_produk')->withPivot(['qty', 'ukuran', 'id']);
+    }
+    /**
+     * Get all of the pesanan for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pesanan(): HasMany
+    {
+        return $this->hasMany(headTransaksi::class, 'id_user', 'id');
     }
 
 

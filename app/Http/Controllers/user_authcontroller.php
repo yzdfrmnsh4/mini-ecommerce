@@ -95,6 +95,10 @@ class user_authcontroller extends Controller
         $data['pesanan'] = headTransaksi::with(['detail_transaksi'])->get();
         return view('user.pesanan_saya', $data);
     }
+    public function profile_view()
+    {
+        return view('user.profile');
+    }
 
     public function edit_view()
     {
