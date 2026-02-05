@@ -11,8 +11,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('detail_transaksi', function (Blueprint $table) {
-            $table->decimal("harga", 15, 2);
-            $table->decimal("sub_total", 15, 2);
+            $table->unsignedBigInteger("harga");
+            $table->unsignedBigInteger("sub_total");
         });
     }
 
