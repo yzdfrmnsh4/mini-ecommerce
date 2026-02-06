@@ -1,3 +1,3 @@
- <tr class="bg-neutral-primary-soft border-b  border-default">
-     {{ $slot }}
- </tr>
+  <tr class="hover:bg-gray-50 transition-colors">
+      {{ $slot }}
+  </tr>

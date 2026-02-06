@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class headTransaksi extends Model
@@ -18,5 +19,9 @@ class headTransaksi extends Model
     public function detail_transaksi(): HasMany
     {
         return $this->hasMany(detailTransaksi::class, 'id_transaksi', 'id');
+    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

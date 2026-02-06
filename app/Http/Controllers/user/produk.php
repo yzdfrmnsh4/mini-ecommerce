@@ -12,6 +12,7 @@ use App\transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class produk extends Controller
@@ -103,6 +104,10 @@ class produk extends Controller
 
         ]);
 
+        if (!Auth::check()) {
+            return redirect()->back()->withErrors(['errors' => "anda harus login terlebih dahulu"]);
+        }
+
 
         $data = (new transaksi($request->qty, $request->size, $request->harga, $id))->saveHeadTrans();
         $cek = $data->saveDetail($data->headtrans->id);
@@ -133,6 +138,46 @@ class produk extends Controller
         }
 
         return redirect()->back();
+
+
+
+
+    }
+
+
+    public function upload_bukti(request $request, $id)
+    {
+        $request->validate(['bukti' => 'required|image']);
+        $head = headTransaksi::find($id);
+
+        if ($request->has("ubah")) {
+            if (Storage::disk('public')->exists("bukti/" . $head->bukti)) {
+                # code...
+                Storage::disk('public')->delete("bukti/" . $head->bukti);
+            }
+        }
+
+
+        if ($request->hasFile("bukti")) {
+
+            $bukti = $request->file("bukti");
+
+            $nama = 'bukti_user ' . Str::random(10) . '.' . $bukti->getClientOriginalExtension();
+
+            $cek = $bukti->storeAs("bukti", $nama, "public");
+
+
+            if ($cek) {
+
+                if ($head) {
+                    # code...
+                    $head->bukti = $nama;
+                    $head->save();
+                    return redirect()->back()->with('success', 'berhasil mengupload bukti');
+                }
+            }
+        }
+
 
 
 

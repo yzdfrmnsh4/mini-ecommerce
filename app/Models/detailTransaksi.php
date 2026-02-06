@@ -18,4 +18,18 @@ class detailTransaksi extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     // 
+
+
+
+
+    /**
+     * Get the produk that owns the detailTransaksi
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function produk(): BelongsTo
+    {
+        return $this->belongsTo(produk::class, 'id_produk', 'id');
+    }
+   
 }

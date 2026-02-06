@@ -63,6 +63,18 @@ class transaksi
         return $head;
     }
 
+
+    public static function changeTransaction($id_transaksi, $status)
+    {
+
+        $trans = headTransaksi::find($id_transaksi);
+        $trans->status = $status;
+        $trans->save();
+
+        return $trans;
+
+    }
+
     public function saveDetail($id_head)
     {
 

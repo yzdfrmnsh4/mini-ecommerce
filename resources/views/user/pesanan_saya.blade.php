@@ -31,8 +31,14 @@
 
             <!-- Daftar Pesanan -->
             <div class="space-y-8">
+                <form id="formBukti" class="hidden" enctype="multipart/form-data" method="post">
+                    @csrf
+                    <input type="file" name="bukti" id="bukti">
+                </form>
                 @foreach ($pesanan as $item)
                     <!-- Contoh pesanan (ganti dengan  dari data real) -->
+
+
                     <div
                         class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
                         <div
@@ -42,7 +48,24 @@
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</p>
                                 <p class="text-xl font-bold text-gray-900 mt-1 rupiah">Rp {{ $item->total_harga }}</p>
                             </div>
-                            <span class="px-6 py-2 bg-green-100 text-green-700 rounded-full font-medium">Selesai</span>
+
+                            @if ($item->status == 1)
+                                <a class="text-slate-800 bg-slate-100 border-slate-800 rounded-md px-3 py-2">Belum
+                                    Terkonfirmasi</a>
+                            @elseif($item->status == 2)
+                                <a class="text-yellow-800 bg-yellow-100 border-yellow-800 rounded-md px-3 py-2">Belum
+                                    Transfer</a>
+                            @elseif($item->status == 3)
+                                <a class="text-blue-800 bg-blue-100 border-blue-800 rounded-md px-3 py-2">Tahap
+                                    Pengiriman</a>
+                            @elseif($item->status == 4)
+                                <a class="text-green-800 bg-green-100 border-green-800 rounded-md px-3 py-2">
+                                    Sukses</a>
+                            @else
+                                <a class="text-red-800 bg-red-100 border-red-800 rounded-md px-3 py-2">
+                                    Di tolak</a>
+                            @endif
+                            {{-- <span class="px-6 py-2 bg-green-100 text-green-700 rounded-full font-medium">Selesai</span> --}}
                         </div>
 
                         <div class="p-6 gap-4 flex flex-col md:p-8">
@@ -51,48 +74,70 @@
                             @foreach ($item->detail_transaksi as $data)
                                 <div class="flex gap-6">
                                     <div class="w-24 h-24 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
-                                        <img src="https://placehold.co/100x100/png?text=Produk" alt="Produk"
+                                        <img src="{{ asset('storage/produk/' . $data->produk->foto) }}" alt="Produk"
                                             class="w-full h-full object-cover">
                                     </div>
                                     <div class="flex-1">
-                                        <h3 class="font-semibold text-gray-900">Kaos Oversized Premium</h3>
-                                        <p class="text-sm text-gray-600 mt-1">Ukuran: L • Qty: 2</p>
+                                        <h3 class="font-semibold text-gray-900">{{ $data->produk->nama_prod }}</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Ukuran: {{ $data->ukuran }} • Qty:
+                                            {{ $data->qty }}</p>
                                     </div>
                                     <div class="text-right">
-                                        <p class="font-bold text-indigo-600">Rp 925.000</p>
+                                        <p class="font-bold text-indigo-600 rupiah">{{ $data->harga }}</p>
                                     </div>
                                 </div>
                             @endforeach
                             <!-- Tombol Aksi -->
+
+
+
                             <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                                <a href="#"
-                                    class="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-all text-center">
-                                    Lihat Detail Pesanan
-                                </a>
-                                <a href="#"
+
+
+
+                                @if ($item->status == '2' and $item->bukti !== '0')
+                                    <a href="{{ asset('storage/bukti/' . $item->bukti) }}" target="_blank"
+                                        class="flex-1 bg-slate-600 text-white font-semibold py-3 rounded-xl hover:bg-slate-700 transition-all text-center">
+                                        Lihat Bukti
+                                    </a>
+                                    <button onclick="buktiFunc('{{ $item->id }}',1)" href="#"
+                                        class="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-all text-center">
+                                        Ubah Bukti
+                                    </button>
+                                @elseif ($item->status == '2')
+                                    <button onclick="buktiFunc('{{ $item->id }}')" href="#"
+                                        class="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-all text-center">
+                                        Upload bukti pesanan
+                                    </button>
+                                @elseif($item->status == '3')
+                                    <a href="{{ asset('storage/bukti/' . $item->bukti) }}" target="_blank"
+                                        class="flex-1 bg-slate-600 text-white font-semibold py-3 rounded-xl hover:bg-slate-700 transition-all text-center">
+                                        Lihat Bukti
+                                    </a>
+                                    <button
+                                        onclick="confirmation('{{ route('ubah_transaksi', ['id' => $item->id, 'status' => 4]) }}','Apakah anda yakin menyelesaikan pesanan ini??','post')"
+                                        href="#"
+                                        class="flex-1 bg-green-600 text-white font-semibold py-3 rounded-xl hover:bg-green-700 transition-all text-center">
+                                        Selesaikan Pesanan
+                                    </button>
+                                @else
+                                    <a href="{{ route('/') }}"
+                                        class="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-all text-center">
+                                        Kembali Belanja lagi
+                                    </a>
+                                @endif
+
+                                {{-- <a href="#"
                                     class="flex-1 bg-white border-2 border-gray-300 text-gray-700 font-semibold py-3 rounded-xl hover:bg-gray-50 transition-all text-center">
                                     Beli Lagi
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </div>
                 @endforeach
 
                 <!-- Pesanan lain (placeholder) -->
-                <div
-                    class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div
-                        class="p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-gray-100">
-                        <div>
-                            <p class="text-sm text-gray-500">Pesanan #ORD-20251220-045 • 20 Des 2025</p>
-                            <p class="text-xl font-bold text-gray-900 mt-1">Rp 780.000</p>
-                        </div>
-                        <span class="px-6 py-2 bg-blue-100 text-blue-700 rounded-full font-medium">Sedang Dikirim</span>
-                    </div>
-                    <div class="p-6 md:p-8 text-center text-gray-500">
-                        <p>Detail pesanan akan muncul di sini setelah diproses lebih lanjut</p>
-                    </div>
-                </div>
+
 
                 <!-- Jika belum ada pesanan -->
                 <!--
@@ -112,5 +157,41 @@
 
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const bukti = document.getElementById("bukti");
+
+
+            window.buktiFunc = function(id, aksi = 0) {
+
+                bukti.click()
+
+                bukti.addEventListener("change", function() {
+                    confirmAction("Sudah yakin dengan file bukti anda?").then((result) => {
+                        if (result.isConfirmed) {
+                            const form = document.getElementById("formBukti");
+
+                            if (aksi !== 0) {
+                                form.action = `upload_bukti/${id}?ubah=true`;
+
+                            } else {
+                                form.action = `upload_bukti/${id}`;
+                            }
+                            form.submit();
+
+
+                        }
+                    }).catch((err) => {
+                        console.log(err);
+
+                    });;
+                })
+            }
+
+
+        })
+    </script>
 
 </x-template>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\adminDashboard as AdminAdminDashboard;
 use App\Http\Controllers\admin\kategori;
 use App\Http\Controllers\admin\produkController;
+use App\Http\Controllers\admin\transaksiManagement;
 use App\Http\Controllers\admin\userManagement;
 use App\Http\Controllers\adminDashboard;
 use App\Http\Controllers\user\landingpage;
@@ -46,8 +47,14 @@ route::post("deleteQty/{id}", [produk::class, 'deleteQty'])->name("deleteQty");
 
 route::post("checkout/{id}", [produk::class, 'checkout'])->name("checkout_normal_post");
 route::post("checkout_from_cart", [produk::class, 'checkout_from_cart'])->name("checkout_from_cart");
+route::post("upload_bukti/{id}", [produk::class, 'upload_bukti'])->name("upload_bukti");
 
 
+
+
+
+//universal aksi perlu login
+route::post("ubah_transaksi/{id}", [transaksiManagement::class, 'ubah_transaksi'])->name("ubah_transaksi");
 //admin
 
 Route::prefix('admin')->group(function () {
@@ -78,6 +85,10 @@ Route::prefix('admin')->group(function () {
     route::get("user_management_edit_view/{id}", [userManagement::class, 'user_management_edit_view'])->name("user_management_edit_view");
     route::post("user_management_add_update_post/{id?}", [userManagement::class, 'user_management_add_update_post'])->name("user_management_add_update_post");
     route::post("user_management_delete/{id}", [userManagement::class, 'user_management_delete'])->name("user_management_delete");
+
+    //transaksi
+    route::get("transaksi_view", [transaksiManagement::class, 'index'])->name("transaksi_index_view");
+
 
 });
 
