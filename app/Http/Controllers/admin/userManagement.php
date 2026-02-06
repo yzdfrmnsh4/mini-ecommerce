@@ -12,7 +12,19 @@ class userManagement extends Controller
     public function index(request $request)
     {
 
-        $data['user'] = User::orderBy('role', 'asc')->get();
+        $user = User::orderBy('role', 'asc');
+
+
+        if ($request->nama) {
+            $user->where('name', 'like', '%' . $request->nama . '%');
+        }
+        if ($request->role) {
+            $user->whereIn('role', $request->role);
+
+        }
+
+        $data['user'] = $user->paginate(10);
+
         return view("admin.user_management.index", $data);
     }
 

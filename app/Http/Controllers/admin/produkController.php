@@ -16,7 +16,19 @@ class produkController extends Controller
     public function index(request $request)
     {
 
-        $data['produk'] = produk::query()->get();
+        $produk = produk::query();
+
+        if ($request->nama) {
+            $produk->where('nama_prod', 'like', '%' . $request->nama . '%');
+        }
+        if ($request->kategori) {
+            $produk->whereHas('kategori', function ($q) use ($request) {
+                return $q->whereIn('kategori', $request->kategori);
+            });
+        }
+
+
+        $data['produk'] = $produk->paginate(10);
 
         return view("admin.produk.index", $data);
     }
@@ -150,7 +162,7 @@ class produkController extends Controller
                 $produk->kategori()->sync($request->kategori);
 
             });
-            return redirect()->route("admin.produk.view");
+            return redirect()->route("admin.produk.view")->with("success");
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -172,9 +184,9 @@ class produkController extends Controller
 
         $prod->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with("success", "berhasil mengubah data");
     }
 
 
-    
+
 }

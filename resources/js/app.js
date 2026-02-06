@@ -39,6 +39,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
+    window.Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+    });
+    document.dispatchEvent(new Event("toast-ready"));
+
     window.confirmation = function (url, pertanyaan = null, method = "get") {
         Swal.fire({
             title: "Yakin?",

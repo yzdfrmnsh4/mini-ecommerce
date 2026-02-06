@@ -59,7 +59,7 @@ class produk extends Controller
 
         return redirect()->back()->withInput([
             "size" => $request->ukuran
-        ]);
+        ])->with("success", 'berhasil menambah keranjang');
 
     }
 
@@ -82,14 +82,14 @@ class produk extends Controller
             # code...
             keranjang::find($key)->update(['qty' => $value]);
         }
-        return redirect()->back();
+        return redirect()->back()->with("success", 'keranjang berhasil di save');
 
     }
     public function deleteQty($id)
     {
         keranjang::find($id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with("success", 'berhasil menghapus keranjang');
     }
 
 
@@ -137,7 +137,7 @@ class produk extends Controller
             keranjang::find($key)->delete();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with("success", 'berhasil mencheckout');
 
 
 

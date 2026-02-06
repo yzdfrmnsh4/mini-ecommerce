@@ -265,7 +265,7 @@
                 form.method = "POST";
                 form.action = "{{ route('add_cart_post', $produk->id) }}";
                 const token = document
-                    .querySelector('meta[name="csrf_token"]')
+                    .querySelector('meta[name="csrf-token"]')
                     .getAttribute("content");
                 form.innerHTML = `
         <input type="hidden" name="_token" value="${token}">

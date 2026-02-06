@@ -26,6 +26,6 @@ class transaksiManagement extends Controller
 
         transaksi::changeTransaction($id, $request->status);
 
-        return redirect()->back();
+        return redirect()->back()->with("success","berhasil mengubah data");
     }
 }

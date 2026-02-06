@@ -30,9 +30,9 @@ class user_authcontroller extends Controller
             $request->session()->regenerate();
 
             if (Auth::user()->role === 'admin') {
-                return redirect()->route('admin.dashboard.view');
+                return redirect()->route('admin.dashboard.view')->with("success", "berhasil login");
             } elseif (Auth::user()->role === 'pembeli') {
-                return redirect()->route('/');
+                return redirect()->route('/')->with("success", "berhasil login");
 
             }
         }

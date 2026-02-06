@@ -20,7 +20,13 @@
         <!-- Table Card -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
 
-
+            <div class="flex p-2  justify-end gap-1">
+                <form class="flex w-[20rem]">
+                    <x-input.input class="border-100 border" placeholder="search" value="{{ request('nama') }}"
+                        name="nama"></x-input.input>
+                    <button class="border-100 hover:bg-slate-100 border  px-4">Cari...</button>
+                </form>
+            </div>
             <!-- Table -->
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -96,6 +102,9 @@
 
                     </tbody>
                 </table>
+                <div class="p-2">
+                    {{ $data->withQueryString()->links('pagination::tailwind') }}
+                </div>
             </div>
 
             <!-- Pagination (tambahkan jika sudah ada paginator) -->

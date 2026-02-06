@@ -1214,8 +1214,12 @@
     </head>
 
     <body class="antialiased bg-white font-sans">
+
+
         <x-navbar></x-navbar>
         {{ $slot }}
+
+
 
         <footer class="bg-gray-900 text-gray-300 py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1271,8 +1275,34 @@
     </body>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
+    @if ($errors->any())
+        <script>
+            document.addEventListener("toast-ready", function() {
+                @foreach ($errors->all() as $item)
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: '{{ $item }}'
+                    })
+                @endforeach
+            });
+        </script>
+    @endif
+
+    @if (session()->has('success'))
+        <script>
+            document.addEventListener("toast-ready", function() {
+
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ session()->get('success') }}'
+                })
+            });
+        </script>
+    @endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             const dropdownTrigger = document.getElementById('profile-dropdown');
             const dropdownMenu = document.getElementById('dropdown-menu');
             const carrotIcon = document.getElementById('carrot-icon');
@@ -1281,32 +1311,38 @@
 
             if (dropdownTrigger && dropdownMenu && carrotIcon) {
                 // Saat hover trigger
-                dropdownTrigger.addEventListener('mouseenter', function () {
+                dropdownTrigger.addEventListener('mouseenter', function() {
                     clearTimeout(timeoutId); // Batalkan close jika sedang menutup
-                    dropdownMenu.classList.remove('opacity-0', 'scale-95', 'translate-y-2', 'pointer-events-none');
-                    dropdownMenu.classList.add('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+                    dropdownMenu.classList.remove('opacity-0', 'scale-95', 'translate-y-2',
+                        'pointer-events-none');
+                    dropdownMenu.classList.add('opacity-100', 'scale-100', 'translate-y-0',
+                        'pointer-events-auto');
                     carrotIcon.classList.add('rotate-180');
                 });
 
                 // Saat mouse leave dari trigger ATAU dropdown
-                dropdownTrigger.addEventListener('mouseleave', function () {
+                dropdownTrigger.addEventListener('mouseleave', function() {
                     timeoutId = setTimeout(() => {
-                        dropdownMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2', 'pointer-events-none');
-                        dropdownMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+                        dropdownMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2',
+                            'pointer-events-none');
+                        dropdownMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0',
+                            'pointer-events-auto');
                         carrotIcon.classList.remove('rotate-180');
                     }, 150); // Delay 150ms agar cursor punya waktu masuk ke dropdown
                 });
 
                 // Saat cursor masuk ke dropdown → batalkan timeout close
-                dropdownMenu.addEventListener('mouseenter', function () {
+                dropdownMenu.addEventListener('mouseenter', function() {
                     clearTimeout(timeoutId);
                 });
 
                 // Saat cursor keluar dari dropdown → mulai timeout close
-                dropdownMenu.addEventListener('mouseleave', function () {
+                dropdownMenu.addEventListener('mouseleave', function() {
                     timeoutId = setTimeout(() => {
-                        dropdownMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2', 'pointer-events-none');
-                        dropdownMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0', 'pointer-events-auto');
+                        dropdownMenu.classList.add('opacity-0', 'scale-95', 'translate-y-2',
+                            'pointer-events-none');
+                        dropdownMenu.classList.remove('opacity-100', 'scale-100', 'translate-y-0',
+                            'pointer-events-auto');
                         carrotIcon.classList.remove('rotate-180');
                     }, 150);
                 });

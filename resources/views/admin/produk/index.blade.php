@@ -1,4 +1,6 @@
 <x-admin.template-admin>
+    {{-- @dd() --}}
+
     <div class="space-y-6">
 
         <!-- Header Section -->
@@ -20,12 +22,27 @@
 
         <!-- Products Table Card -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="flex p-2 items-center justify-between gap-1">
 
-            <!-- Table Title -->
-            <div class="px-6 py-5 border-b border-gray-200">
-                <h2 class="text-lg font-medium text-gray-900">Daftar Produk</h2>
+                <div class="px-6 py-5 border-b border-gray-200">
+                    <h2 class="text-lg font-medium text-gray-900">Daftar Produk</h2>
+                </div>
+                <form class="flex flex-1 justify-end gap-2 h-fit">
+
+                    <x-input.select name="kategori" class="w-[20rem]" :value="request('kategori')" :multiple="true">
+                        @foreach ($produk->pluck('kategori')->flatten() as $item)
+                            <option>{{ $item['kategori'] }}</option>
+                        @endforeach
+                    </x-input.select>
+                    <div class=" w-[20rem] flex">
+                        <x-input.input class="border-100 border" placeholder="search" value="{{ request('nama') }}"
+                            name="nama"></x-input.input>
+                        <button class="border-100 hover:bg-slate-100 border  px-4">Cari...</button>
+                    </div>
+                </form>
+                <!-- Table Title -->
+
             </div>
-
             @if ($produk->isNotEmpty())
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
