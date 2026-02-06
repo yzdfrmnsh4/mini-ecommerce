@@ -1214,8 +1214,12 @@
     </head>
 
     <body class="antialiased bg-white font-sans">
+
+
         <x-navbar></x-navbar>
         {{ $slot }}
+
+
 
         <footer class="bg-gray-900 text-gray-300 py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1271,6 +1275,31 @@
     </body>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <script></script>
+    @if ($errors->any())
+        <script>
+            document.addEventListener("toast-ready", function() {
+                @foreach ($errors->all() as $item)
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: '{{ $item }}'
+                    })
+                @endforeach
+            });
+        </script>
+    @endif
+
+    @if (session()->has('success'))
+        <script>
+            document.addEventListener("toast-ready", function() {
+
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ session()->get('success') }}'
+                })
+            });
+        </script>
+    @endif
+
 
     </html>

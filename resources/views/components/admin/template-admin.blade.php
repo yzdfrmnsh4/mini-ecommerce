@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,5 +30,42 @@
             </main>
         </div>
     </div>
+
+    @if ($errors->any())
+        <script>
+            document.addEventListener("toast-ready", function() {
+                @foreach ($errors->all() as $item)
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: @json($item, true)
+                    })
+                @endforeach
+            });
+        </script>
+    @endif
+    {{-- @if (session()->has('errors'))
+        <script>
+            document.addEventListener("toast-ready", function() {
+
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ session()->get('errors') }}'
+                })
+            });
+        </script>
+    @endif --}}
+    @if (session()->has('success'))
+        <script>
+            document.addEventListener("toast-ready", function() {
+
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ session()->get('success') }}'
+                })
+            });
+        </script>
+    @endif
 </body>
+
 </html>

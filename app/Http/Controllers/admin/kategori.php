@@ -10,7 +10,12 @@ class kategori extends Controller
 {
     public function index(request $request)
     {
-        $data['data'] = ModelsKategori::query()->get();
+        $first = ModelsKategori::query();
+        if ($request->nama) {
+            $first->where("kategori", 'like', '%' . $request->nama . '%');
+        }
+
+        $data['data'] = $first->paginate(10);
 
         return view("admin.katregori.index", $data);
     }
@@ -50,7 +55,7 @@ class kategori extends Controller
         ]);
 
 
-        return redirect()->route("admin.kategori.view");
+        return redirect()->route("admin.kategori.view")->with("success", "berhasil mengubah data");
 
     }
 
@@ -58,6 +63,6 @@ class kategori extends Controller
     {
         \App\Models\kategori::find($id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with("success", "berhasil mengubah data");
     }
 }
