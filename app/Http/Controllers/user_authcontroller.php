@@ -30,7 +30,7 @@ class user_authcontroller extends Controller
 
             $request->session()->regenerate();
 
-            if (Auth::user()->role === 'admin') {
+            if (Auth::user()->role === 'admin' || Auth::user()->role === 'kasir') {
                 return redirect()->route('admin.dashboard.view')->with("success", "berhasil login");
             } elseif (Auth::user()->role === 'pembeli') {
                 return redirect()->route('/')->with("success", "berhasil login");
@@ -93,9 +93,16 @@ class user_authcontroller extends Controller
 
 
 
-    public function pesanan_saya_view()
+    public function pesanan_saya_view(request $request)
     {
-        $data['pesanan'] = headTransaksi::with(['detail_transaksi'])->get();
+        $pesan = headTransaksi::with(['detail_transaksi']);
+        if ($request->status) {
+            # code...
+            $pesan->where('id_user', Auth::user()->id)->where("status", $request->status);
+        }
+
+        $data['pesanan'] = $pesan->get();
+
         return view('user.pesanan_saya', $data);
     }
     public function profile_view()
