@@ -40,25 +40,21 @@
     </nav>
 
     <!-- User Profile (Bottom) -->
-    <div class="p-4 border-t border-gray-200">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-medium">
-                M
+    <div class="p-2 border-t border-gray-200 hover:bg-gray-100 hover:border-gray-300">
+        <div class="flex items-center gap-3 hover:text-red-500 ">
+            <div class="w-10 h-10 rounded-full  flex items-center justify-center  font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
             </div>
             <div class="flex-1 min-w-0">
 
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button class="w-full flex justify-start">Log Out</button>
+                    <button class="w-full flex justify-start ">Log Out</button>
                 </form>
                 {{-- <p class="text-sm font-medium text-gray-900 truncate">Mateusz Woźniak</p>
                 <p class="text-xs text-gray-500 truncate">mateusz@widlab.co</p> --}}
             </div>
-            <button class="text-gray-400 hover:text-gray-600">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
+
         </div>
     </div>
 </aside>

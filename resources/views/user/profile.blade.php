@@ -33,7 +33,7 @@
                         <!-- Stats -->
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12 mx-auto ">
                             <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-100">
-                                <p class="text-3xl font-bold text-indigo-600">{{Auth::user()->pesanan->pluck("total_barang")->sum()}}</p>
+                                <p class="text-3xl font-bold text-indigo-600 ">{{Auth::user()->pesanan->pluck("total_barang")->sum()}}</p>
                                 <p class="text-sm text-gray-600 mt-1">Pesanan</p>
                             </div>
                             <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-100">
@@ -41,7 +41,7 @@
                                 <p class="text-sm text-gray-600 mt-1">Selesai</p>
                             </div>
                             <div class="text-center p-6 bg-gray-50 rounded-xl border border-gray-100">
-                                <p class="text-3xl font-bold text-indigo-600">{{Auth::user()->pesanan->where("status",4)->pluck("total_harga")->sum()}}</p>
+                                <p class="text-3xl font-bold text-indigo-600 rupiah">Rp {{Auth::user()->pesanan->where("status",4)->pluck("total_harga")->sum()}}</p>
                                 <p class="text-sm text-gray-600 mt-1">Total Belanja</p>
                             </div>
 

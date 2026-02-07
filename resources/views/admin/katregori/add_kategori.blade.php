@@ -1,5 +1,5 @@
 <x-admin.template-admin>
-<div class="max-w-3xl mx-auto py-8">
+<div class="max-w-6xl mx-auto py-8">
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
 
         <!-- Header -->

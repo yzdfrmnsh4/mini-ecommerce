@@ -10,7 +10,7 @@
                     <h1 class="text-4xl font-bold text-gray-900">Pesanan Saya</h1>
                     <p class="text-lg text-gray-600 mt-2">Lihat riwayat dan status pesanan Anda</p>
                 </div>
-                <a href="#"
+                <a href="/"
                     class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-all shadow-md">
                     Lanjut Belanja
                 </a>
