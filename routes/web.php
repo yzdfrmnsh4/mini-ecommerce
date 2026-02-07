@@ -11,24 +11,34 @@ use App\Http\Controllers\user\produk;
 use App\Http\Controllers\user_authcontroller;
 use App\Http\Middleware\admin;
 use App\Http\Middleware\kasir;
+use App\Http\Middleware\notAdmin;
+use App\Http\Middleware\notRegister;
 use App\Http\Middleware\user;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+Route::middleware([notAdmin::class])->group(function () {
 
-Route::get('/', [landingpage::class, 'index'])->name("/");
+    Route::get('/', [landingpage::class, 'index'])->name("/");
 
-//produk di user
-Route::get('/produk_a/{id}', [produk::class, 'detail_produk'])->name("detail_produk");
+    //produk di user
+    Route::get('/produk_a/{id}', [produk::class, 'detail_produk'])->name("detail_produk");
+
+});
 
 
-//register dan login
-route::get("login", [user_authcontroller::class, 'login_view'])->name("login_view");
+
+
+Route::middleware([notRegister::class])->group(function () {
+
+    //register dan login
+    route::get("login", [user_authcontroller::class, 'login_view'])->name("login_view");
+    route::get("register", [user_authcontroller::class, 'register_view'])->name("register_view");
+
+});
+
 route::post("login", [user_authcontroller::class, 'login'])->name("login.post");
-route::get("register", [user_authcontroller::class, 'register_view'])->name("register_view");
 route::post("register", [user_authcontroller::class, 'register'])->name("register.post");
-
-
 //wajib login
 
 Route::middleware([user::class])->group(function () {
