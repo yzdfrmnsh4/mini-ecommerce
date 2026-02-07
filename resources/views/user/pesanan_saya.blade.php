@@ -19,15 +19,34 @@
             <!-- Filter Status -->
             <div class="flex flex-wrap gap-3 mb-10">
                 <a href="{{ route('pesanan_saya_view', ['status' => '']) }}"
-                    class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl shadow-md">Semua</a>
+                class="px-6 py-3 font-medium rounded-xl shadow-sm transition-all duration-200
+                        {{ request()->query('status') === null ? 'bg-indigo-600 text-white shadow-md' : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50' }}">
+                    Semua
+                </a>
+
+                <a href="{{ route('pesanan_saya_view', ['status' => 1]) }}"
+                class="px-6 py-3 font-medium rounded-xl shadow-sm transition-all duration-200
+                        {{ request()->query('status') == '1' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50' }}">
+                    Belum Terkofirmasi
+                </a>
+
                 <a href="{{ route('pesanan_saya_view', ['status' => 2]) }}"
-                    class="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors">Menunggu
-                    Pembayaran</a>
+                class="px-6 py-3 font-medium rounded-xl shadow-sm transition-all duration-200
+                        {{ request()->query('status') == '2' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50' }}">
+                    Menunggu Pembayaran
+                </a>
+
                 <a href="{{ route('pesanan_saya_view', ['status' => 3]) }}"
-                    class="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors">Sedang
-                    Dikirim</a>
+                class="px-6 py-3 font-medium rounded-xl shadow-sm transition-all duration-200
+                        {{ request()->query('status') == '3' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50' }}">
+                    Sedang Dikirim
+                </a>
+
                 <a href="{{ route('pesanan_saya_view', ['status' => 4]) }}"
-                    class="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors">Selesai</a>
+                class="px-6 py-3 font-medium rounded-xl shadow-sm transition-all duration-200
+                        {{ request()->query('status') == '4' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50' }}">
+                    Selesai
+                </a>
             </div>
 
             <!-- Daftar Pesanan -->
