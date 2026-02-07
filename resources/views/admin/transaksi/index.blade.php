@@ -1,6 +1,7 @@
 <x-admin.template-admin>
-    <x-admin.table.table label="Data Transaksi" :periode="['tanggal1', 'tanggal2']" FilterByselect="status" FilterBytext="name"
-        idButtonPrint="print_button" idForm="formPrint" dataExist="2" :th="[
+    <x-admin.table.table sublabel="Pengelolaan data transaksi" label="Data Transaksi" :periode="['tanggal1', 'tanggal2']"
+        FilterByselect="status" FilterBytext="name" idButtonPrint="print_button" idForm="formPrint" dataExist="2"
+        :th="[
             'Nama Pembeli',
             'Kode Transaksi',
             'Total Barang',

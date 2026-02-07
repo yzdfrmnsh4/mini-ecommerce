@@ -80,7 +80,6 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware("role:admin")->group(function () {
 
-        route::get("Dashboard", [AdminAdminDashboard::class, 'index'])->name("admin.dashboard.view");
 
 
 
@@ -114,6 +113,8 @@ Route::prefix('admin')->group(function () {
 
         //kasir
         //transaksi
+        route::get("Dashboard", [AdminAdminDashboard::class, 'index'])->name("admin.dashboard.view");
+
         route::get("transaksi_view", [transaksiManagement::class, 'index'])->name("transaksi_index_view");
         route::post("printOutPenjualan", [transaksiManagement::class, 'print'])->name("printOutPenjualan");
 

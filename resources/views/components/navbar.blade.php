@@ -73,7 +73,7 @@
                            <div id="dropdown-menu"
                                class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden opacity-0 scale-95 translate-y-2 pointer-events-none transition-all duration-200">
 
-                               <a href="profile_view"
+                               <a href="{{ route('profile_view') }}"
                                    class="block px-5 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors flex items-center gap-3">
                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -82,7 +82,7 @@
                                    Profile Saya
                                </a>
 
-                               <a href="pesanan_saya"
+                               <a href="{{ route('pesanan_saya_view') }}"
                                    class="block px-5 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors flex items-center gap-3">
                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

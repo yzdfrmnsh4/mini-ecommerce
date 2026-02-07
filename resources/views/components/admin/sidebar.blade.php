@@ -18,17 +18,22 @@
         <x-admin.sidelink href="{{ route('admin.dashboard.view') }}" icon="home" :active="request()->routeIs('admin.dashboard.view')">
             Dashboard
         </x-admin.sidelink>
+        @if (Auth::user()->role === 'admin')
+            <x-admin.sidelink href="{{ route('admin.produk.view') }}" icon="package" :active="request()->routeIs('admin.produk.view', 'admin.add_produk.view', 'admin.edit_produk.post')">
+                Produk
+            </x-admin.sidelink>
 
-        <x-admin.sidelink href="{{ route('admin.produk.view') }}" icon="package" :active="request()->routeIs('admin.produk.view', 'admin.add_produk.view', 'admin.edit_produk.post')">
-            Produk
-        </x-admin.sidelink>
-
-        <x-admin.sidelink href="{{ route('admin.kategori.view') }}" icon="category" :active="request()->routeIs('admin.kategori.view', 'admin.add_kategori.view', 'admin.edit_kategori.view')">
-            Kategori
-        </x-admin.sidelink>
-        <x-admin.sidelink href="{{ route('user_management_view') }}" icon="user" :active="request()->routeIs('user_management_view', 'user_management_add_view', 'user_management_edit_view')">
-            User Management
-        </x-admin.sidelink>
+            <x-admin.sidelink href="{{ route('admin.kategori.view') }}" icon="category" :active="request()->routeIs('admin.kategori.view', 'admin.add_kategori.view', 'admin.edit_kategori.view')">
+                Kategori
+            </x-admin.sidelink>
+            <x-admin.sidelink href="{{ route('user_management_view') }}" icon="user" :active="request()->routeIs(
+                'user_management_view',
+                'user_management_add_view',
+                'user_management_edit_view',
+            )">
+                User Management
+            </x-admin.sidelink>
+        @endif
         <x-admin.sidelink href="{{ route('transaksi_index_view') }}" icon="transaksi" :active="request()->routeIs('transaksi_index_view', 'user_management_add_view', 'user_management_edit_view')">
             Penjualan
         </x-admin.sidelink>
@@ -41,12 +46,11 @@
                 M
             </div>
             <div class="flex-1 min-w-0">
-                @auth
-                    <p class="text-sm font-medium text-gray-900 truncate">{{ Auth::user()->name ?? 'user' }}</p>
-                    <p class="text-xs font-medium text-gray-500 truncate">{{ Auth::user()->email ?? 'user@gmail.com' }}</p>
-                @else
-                    <p class="text-sm font-medium text-gray-900 truncate">{{ Auth::user()->name ?? 'user' }}</p>
-                @endauth
+
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button class="w-full flex justify-start">Log Out</button>
+                </form>
                 {{-- <p class="text-sm font-medium text-gray-900 truncate">Mateusz Woźniak</p>
                 <p class="text-xs text-gray-500 truncate">mateusz@widlab.co</p> --}}
             </div>

@@ -18,15 +18,16 @@
 
             <!-- Filter Status -->
             <div class="flex flex-wrap gap-3 mb-10">
-                <button class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl shadow-md">Semua</button>
-                <button
+                <a href="{{ route('pesanan_saya_view', ['status' => '']) }}"
+                    class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl shadow-md">Semua</a>
+                <a href="{{ route('pesanan_saya_view', ['status' => 2]) }}"
                     class="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors">Menunggu
-                    Pembayaran</button>
-                <button
+                    Pembayaran</a>
+                <a href="{{ route('pesanan_saya_view', ['status' => 3]) }}"
                     class="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors">Sedang
-                    Dikirim</button>
-                <button
-                    class="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors">Selesai</button>
+                    Dikirim</a>
+                <a href="{{ route('pesanan_saya_view', ['status' => 4]) }}"
+                    class="px-6 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors">Selesai</a>
             </div>
 
             <!-- Daftar Pesanan -->
