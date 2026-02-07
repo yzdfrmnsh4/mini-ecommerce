@@ -29,7 +29,7 @@
                 </div>
                 <form class="flex flex-1 justify-end gap-2 h-fit">
 
-                    <x-input.select name="kategori" class="w-[20rem]" :value="request('kategori')" :multiple="true">
+                    <x-input.select name="kategori" class="!w-[20rem]" :value="request('kategori')" :multiple="true">
                         @foreach ($produk->pluck('kategori')->flatten() as $item)
                             <option>{{ $item['kategori'] }}</option>
                         @endforeach

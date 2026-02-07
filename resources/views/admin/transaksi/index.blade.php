@@ -1,5 +1,35 @@
 <x-admin.template-admin>
-    <x-admin.table.table dataExist="2" :th="['Nama Pembeli', 'Kode Transaksi', 'Total Barang', 'Total Harga', 'bukti', 'status', 'aksi']">
+    <x-admin.table.table label="Data Transaksi" :periode="['tanggal1', 'tanggal2']" FilterByselect="status" FilterBytext="name"
+        idButtonPrint="print_button" idForm="formPrint" dataExist="2" :th="[
+            'Nama Pembeli',
+            'Kode Transaksi',
+            'Total Barang',
+            'Total Harga',
+            'bukti',
+            'status',
+            'Tanggal Pembelian',
+            'aksi',
+        ]">
+
+
+        <x-slot:option>
+            @foreach ($transaksi->pluck('status')->flatten() as $item)
+                <option value="{{ $item }}">
+                    @if ($item == 1)
+                        Terkonfirmasi
+                    @elseif($item == 2)
+                        Belum Transfer
+                    @elseif($item == 3)
+                        Tahap Pengiriman
+                    @elseif($item == 4)
+                        Sukses
+                    @else
+                        Di tolak
+                    @endif
+                </option>
+            @endforeach
+        </x-slot:option>
+
         @foreach ($transaksi as $item)
             <x-admin.table.tr>
                 <x-admin.table.td>{{ $item->user->name }}</x-admin.table.td>
@@ -31,6 +61,9 @@
                             Di tolak</a>
                     @endif
                 </x-admin.table.td>
+                <x-admin.table.td>
+                    {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+                </x-admin.table.td>
 
                 <x-admin.table.td>
                     <div class="flex gap-2">
@@ -58,4 +91,47 @@
             </x-admin.table.tr>
         @endforeach
     </x-admin.table.table>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+
+
+            const buttonPrint = document.getElementById("print_button");
+
+            buttonPrint.addEventListener("click", function() {
+                const values = Array.from(
+                    document.querySelectorAll('[name="status[]"] option:checked')
+                ).map(opt => opt.value);
+
+                console.log(values);
+                const form = document.createElement("form");
+                form.method = "post";
+
+                const token = document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content");
+                form.innerHTML = `
+        <input type="hidden" name="_token" value="${token}">
+        <input type="hidden" name="_method" value="post">
+        <input type="hidden" name="name" value="${document.querySelector(`input[name="name"]`)?.value??''}">
+        <input type="hidden" name="status" value="${document.querySelector(`[name="status"]`)?.value??''}">
+        <input type="hidden" name="tanggal1" value="${document.querySelector(`input[name="tanggal1"]`)?.value??''}">
+        <input type="hidden" name="tanggal2" value="${document.querySelector(`input[name="tanggal2"]`)?.value??''}">
+        
+        `
+                values.forEach(val => {
+                    const input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = "status[]";
+                    input.value = val;
+                    form.appendChild(input);
+                });
+                document.body.appendChild(form);
+                form.action = '{{ route('printOutPenjualan') }}'
+                form.target = "_blank";
+                form.submit();
+
+            })
+        })
+    </script>
 </x-admin.template-admin>

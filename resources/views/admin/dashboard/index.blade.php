@@ -1,99 +1,115 @@
 <x-admin.template-admin>
-<div class="space-y-8">
+    <div class="space-y-8">
 
-    <!-- Top Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Available to payout -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Jumlah Produk</h3>
-            <p class="text-3xl font-bold text-gray-900 mt-2">164</p>
-            <p class="text-sm text-gray-500 mt-1">
-                Payout • $2.6K will be available soon
-            </p>
-        </div>
 
-        <!-- Today revenue -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Jumlah User</h3>
-            <div class="flex items-baseline gap-3 mt-2">
-                <p class="text-3xl font-bold text-indigo-600">2.6K</p>
-                <span class="text-sm font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">+14%</span>
+        <!-- Top Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Available to payout -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Jumlah Produk</h3>
+                <p class="text-3xl font-bold text-gray-900 mt-2">{{ $total_produk }}</p>
+                <p class="text-sm text-gray-500 mt-1">
+                    Payout • $2.6K will be available soon
+                </p>
             </div>
-            <p class="text-sm text-gray-500 mt-1">28.6K • 28 orders</p>
-        </div>
 
-        <!-- Today sessions -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Total Transaksi</h3>
-            <div class="flex items-baseline gap-3 mt-2">
-                <p class="text-3xl font-bold text-gray-900">366</p>
-                <span class="text-sm font-medium px-2.5 py-0.5 rounded-full bg-green-100 text-green-800">+27%</span>
+            <!-- Today revenue -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Jumlah User</h3>
+                <div class="flex items-baseline gap-3 mt-2">
+                    <p class="text-3xl font-bold text-indigo-600">{{ $total_user }}</p>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">{{ $total_user }} • {{ $total_transaksi }} orders</p>
             </div>
-            <p class="text-sm text-gray-500 mt-1">2 visitors right now</p>
-        </div>
-    </div>
 
-    <!-- Sales Funnel -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-        <div class="p-6 border-b border-gray-200">
-            <h2 class="text-lg font-semibold text-gray-900">Sales Funnel</h2>
+            <!-- Today sessions -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Total Transaksi</h3>
+                <div class="flex items-baseline gap-3 mt-2">
+                    <p class="text-3xl font-bold text-gray-900">{{ $total_transaksi }}</p>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">2 visitors right now</p>
+            </div>
         </div>
 
-        <div class="p-6">
-            <div class="flex flex-col md:flex-row gap-8 items-center justify-between">
-                <!-- Funnel Visualization -->
-                <div class="w-full md:w-1/2">
-                    <div class="relative h-80 flex items-center justify-center">
-                        <div class="w-full max-w-md">
-                            <!-- Simplified funnel bars -->
-                            <div class="space-y-4">
-                                <div class="bg-indigo-100 rounded-lg p-4 text-indigo-800 font-medium">
-                                    Sessions <span class="float-right">9.3K</span>
-                                </div>
-                                <div class="bg-indigo-200 rounded-lg p-4 text-indigo-800 font-medium ml-6">
-                                    Product View <span class="float-right">4.7K</span>
-                                </div>
-                                <div class="bg-indigo-300 rounded-lg p-4 text-indigo-900 font-semibold ml-12">
-                                    Add to Cart <span class="float-right">914</span>
-                                </div>
-                                <div class="bg-indigo-400 rounded-lg p-4 text-white font-semibold ml-20">
-                                    Initiate Checkout <span class="float-right">872</span>
-                                </div>
-                                <div class="bg-indigo-600 rounded-lg p-4 text-white font-bold ml-28">
-                                    Purchase <span class="float-right">463</span>
+        <!-- Sales Funnel -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="p-6 border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-900">Sales Funnel</h2>
+            </div>
+
+            <div class="p-6">
+                <div class="flex flex-col md:flex-row gap-8 items-center justify-between">
+                    <!-- Funnel Visualization -->
+                    <div class="w-full md:w-1/2">
+                        <div class="relative h-80 flex items-center justify-center">
+                            <div class="w-full max-w-md">
+                                <!-- Simplified funnel bars -->
+                                <div class="space-y-4 ">
+
+
+                                    {{-- @dd($data) --}}
+
+                                    @foreach ($data as $item)
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-sm font-medium text-indigo-900">
+                                                <span>{{ $item['nama'] }}</span>
+                                                <span>{{ $item['persentase'] }}% ({{ $item['total'] }} Terjual)</span>
+                                            </div>
+
+                                            <div class="w-full bg-indigo-100 rounded-full h-4 overflow-hidden">
+                                                <div class="h-4 bg-indigo-600 transition-all duration-500"
+                                                    style="width: {{ $item['persentase'] }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    {{-- <div class="bg-indigo-200 rounded-lg p-4 text-indigo-800 font-medium ml-6">
+                                        Product View <span class="float-right">4.7K</span>
+                                    </div>
+                                    <div class="bg-indigo-300 rounded-lg p-4 text-indigo-900 font-semibold ml-12">
+                                        Add to Cart <span class="float-right">914</span>
+                                    </div>
+                                    <div class="bg-indigo-400 rounded-lg p-4 text-white font-semibold ml-20">
+                                        Initiate Checkout <span class="float-right">872</span>
+                                    </div>
+                                    <div class="bg-indigo-600 rounded-lg p-4 text-white font-bold ml-28">
+                                        Purchase <span class="float-right">463</span>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Funnel Stats -->
-                <div class="w-full md:w-1/2 space-y-6">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <p class="text-sm text-gray-500">Conversion Rate</p>
-                            <p class="text-2xl font-bold text-gray-900 mt-1">5.0%</p>
+                    <!-- Funnel Stats -->
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-sm text-gray-500">Jumlah Transaksi </p>
+                                <p class="text-2xl font-bold text-gray-900 mt-1">{{ $sukses }}%</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Jumlah Transaksi yang gagal</p>
+                                <p class="text-2xl font-bold text-red-600 mt-1">{{ $gagal }}%</p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="text-sm text-gray-500">Abandonment Rate</p>
-                            <p class="text-2xl font-bold text-red-600 mt-1">4.6%</p>
-                        </div>
-                    </div>
 
-                    <div>
-                        <p class="text-sm text-gray-500 mb-2">Top Insight</p>
-                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <p class="text-sm text-green-800">
-                                <strong>Add to Cart</strong> stage shows strong performance • 95% proceed to checkout
-                            </p>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-2">Kesimpulan</p>
+                            <div
+                                class=" {{ $sukses > $gagal ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200' }} rounded-lg p-4">
+                                <p class="text-sm text-green-800">
+                                    <strong>Add to Cart</strong>
+                                    {{ $sukses > $gagal ? 'jumlah transaksi yang berhasil lebih banyak maka tingkatkan lah!' : 'Perlu ada nya evaluasi secara berkala dikarena kan jumlah transaksi gagal lebih banyak' }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {{-- <!-- Device & Audience -->
+        {{-- <!-- Device & Audience -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Device Breakdown -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -191,5 +207,5 @@
         </div>
     </div> --}}
 
-</div>
+    </div>
 </x-admin.template-admin>

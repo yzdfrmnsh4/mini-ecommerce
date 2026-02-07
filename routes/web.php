@@ -88,6 +88,7 @@ Route::prefix('admin')->group(function () {
 
     //transaksi
     route::get("transaksi_view", [transaksiManagement::class, 'index'])->name("transaksi_index_view");
+    route::post("printOutPenjualan", [transaksiManagement::class, 'print'])->name("printOutPenjualan");
 
 
 });

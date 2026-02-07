@@ -23,13 +23,13 @@
             <div class="flex p-2 items-center justify-between gap-1">
 
                 <div class="px-6 py-5 border-b border-gray-200">
-                    <h2 class="text-lg font-medium text-gray-900">Daftar Produk</h2>
+                    <h2 class="text-lg font-medium text-gray-900">Daftar User</h2>
                 </div>
                 <form class="flex flex-1 justify-end gap-2 h-fit">
 
-                    <x-input.select name="role" class="w-[20rem]" :value="request('kategori')" :multiple="true">
-                        @foreach ($user->pluck('role') as $item => $val)
-                            <option value="">{{ $val }}</option>
+                    <x-input.select name="role" class="!w-[20rem]" :value="request('role')" :multiple="true">
+                        @foreach ($user->pluck('role')->toArray() as $item => $val)
+                            <option value="{{ $val }}">{{ $val }}</option>
                         @endforeach
 
                     </x-input.select>
