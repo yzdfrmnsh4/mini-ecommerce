@@ -9,7 +9,7 @@
                 <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Jumlah Produk</h3>
                 <p class="text-3xl font-bold text-gray-900 mt-2">{{ $total_produk }}</p>
                 <p class="text-sm text-gray-500 mt-1">
-                    Payout • $2.6K will be available soon
+                    Jumlah Produk Anda
                 </p>
             </div>
 
@@ -28,17 +28,17 @@
                 <div class="flex items-baseline gap-3 mt-2">
                     <p class="text-3xl font-bold text-gray-900">{{ $total_transaksi }}</p>
                 </div>
-                <p class="text-sm text-gray-500 mt-1">2 visitors right now</p>
+                <p class="text-sm text-gray-500 mt-1">total transaksi yang sudah dilakukan</p>
             </div>
         </div>
 
         <!-- Sales Funnel -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div class="p-6 border-b border-gray-200">
-                <h2 class="text-lg font-semibold text-gray-900">Sales Funnel</h2>
+                <h2 class="text-lg font-semibold text-gray-900">Rincian Penjualan</h2>
             </div>
 
-            <div class="p-6">
+            <div class="px-6">
                 <div class="flex flex-col md:flex-row gap-8 items-center justify-between">
                     <!-- Funnel Visualization -->
                     <div class="w-full md:w-1/2">
