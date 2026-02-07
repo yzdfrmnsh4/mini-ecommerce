@@ -25,7 +25,7 @@
                     @elseif($item == 4)
                         Sukses
                     @else
-                        Di tolak
+                        Di Batalkan
                     @endif
                 </option>
             @endforeach
@@ -59,7 +59,7 @@
                             Sukses</a>
                     @else
                         <a class="text-red-800 bg-red-100 border-red-800 rounded-md px-3 py-2">
-                            Di tolak</a>
+                            Di Batalkan</a>
                     @endif
                 </x-admin.table.td>
                 <x-admin.table.td>

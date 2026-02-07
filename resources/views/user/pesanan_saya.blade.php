@@ -83,7 +83,7 @@
                                     Sukses</a>
                             @else
                                 <a class="text-red-800 bg-red-100 border-red-800 rounded-md px-3 py-2">
-                                    Di tolak</a>
+                                    Di Batalkan</a>
                             @endif
                             {{-- <span class="px-6 py-2 bg-green-100 text-green-700 rounded-full font-medium">Selesai</span> --}}
                         </div>
@@ -125,6 +125,12 @@
                                         Ubah Bukti
                                     </button>
                                 @elseif ($item->status == '2')
+                                    <button
+                                        onclick="confirmation('{{ route('ubah_transaksi', ['id' => $item->id, 'status' => 5]) }}','Apakah anda yakin membatalkan pesanan ini??','post')"
+                                        href="#"
+                                        class="flex-1 bg-red-600 text-white font-semibold py-3 rounded-xl hover:bg-red-700 transition-all text-center">
+                                        Batalkan Pesanan
+                                    </button>
                                     <button onclick="buktiFunc('{{ $item->id }}')" href="#"
                                         class="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-all text-center">
                                         Upload bukti pesanan
@@ -140,6 +146,17 @@
                                         class="flex-1 bg-green-600 text-white font-semibold py-3 rounded-xl hover:bg-green-700 transition-all text-center">
                                         Selesaikan Pesanan
                                     </button>
+                                @elseif ($item->status == '1')
+                                    <button
+                                        onclick="confirmation('{{ route('ubah_transaksi', ['id' => $item->id, 'status' => 5]) }}','Apakah anda yakin membatalkan pesanan ini??','post')"
+                                        href="#"
+                                        class="flex-1 bg-red-600 text-white font-semibold py-3 rounded-xl hover:bg-red-700 transition-all text-center">
+                                        Batalkan Pesanan
+                                    </button>
+                                    <a href="{{ route('/') }}"
+                                        class="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-all text-center">
+                                        Kembali Belanja lagi
+                                    </a>
                                 @else
                                     <a href="{{ route('/') }}"
                                         class="flex-1 bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition-all text-center">
