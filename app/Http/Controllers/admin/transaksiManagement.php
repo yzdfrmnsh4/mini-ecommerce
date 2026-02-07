@@ -21,10 +21,10 @@ class transaksiManagement extends Controller
             });
         }
         if ($request->status) {
-            $transaksi->where('status', $request->status);
+            $transaksi->whereIn('status', $request->status);
         }
         if ($request->tanggal1 && $request->tanggal2) {
-            $transaksi->whereIn('created_at', [$request->tanggal1, $request->tanggal2]);
+            $transaksi->whereBetween('created_at', [$request->tanggal1, $request->tanggal2]);
         }
 
 
@@ -51,7 +51,7 @@ class transaksiManagement extends Controller
     public function print(request $request)
     {
 
-        $transaksi = headTransaksi::query();
+        $transaksi = headTransaksi::with(['detail_transaksi'])->orderBy('status', 'asc');
 
         if ($request->name) {
             $transaksi->whereHas('user', function ($d) use ($request) {
@@ -59,11 +59,13 @@ class transaksiManagement extends Controller
             });
         }
         if ($request->status) {
-            $transaksi->where('status', $request->status);
+            $transaksi->whereIn('status', $request->status);
         }
         if ($request->tanggal1 && $request->tanggal2) {
-            $transaksi->whereIn('created_at', [$request->tanggal1, $request->tanggal2]);
+            $transaksi->whereBetween('created_at', [$request->tanggal1, $request->tanggal2]);
         }
+
+
 
 
 

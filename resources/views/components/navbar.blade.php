@@ -91,7 +91,7 @@
                                    Pesanan Saya
                                </a>
 
-                               <form method="POST" action="">
+                               <form method="POST" action="{{ route('logout') }}">
                                    @csrf
                                    <button type="submit"
                                        class="w-full text-left px-5 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors flex items-center gap-3">

@@ -6,6 +6,7 @@ use App\addAcount;
 use App\Models\headTransaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class user_authcontroller extends Controller
 {
@@ -90,6 +91,8 @@ class user_authcontroller extends Controller
 
 
 
+
+
     public function pesanan_saya_view()
     {
         $data['pesanan'] = headTransaksi::with(['detail_transaksi'])->get();
@@ -110,10 +113,13 @@ class user_authcontroller extends Controller
     {
 
 
+
+        // dd($request->all());
         $request->validate([
             "email" => "required|unique:users,email," . $id . ',id',
             "name" => "required",
             "no_telp" => "required|unique:users,no_telp," . $id . ',id',
+            "password" => "nullable|confirmed",
 
         ]);
 
@@ -125,11 +131,24 @@ class user_authcontroller extends Controller
                 "id" => $id
             ]);
 
-            // return response()->json($request);
+            if ($request->password) {
+                # code...
+                $user = Auth()->user();
 
+                if (!Hash::check($request->password_lama, $user->password)) {
+                    return back()->withErrors([
+                        'password_lama' => 'Password lama salah',
+                    ]);
+                }
+
+                $user->update([
+                    'password' => Hash::make($request->password_baru),
+                ]);
+
+            }
 
             addAcount::request($request)->save();
-            return redirect()->route("login_view")->with("success", "Berhasil membuat akun");
+            return redirect()->back()->with("success", "Berhasil mengubah data diri");
 
             //code...
         } catch (\Throwable $th) {

@@ -85,7 +85,7 @@ class produkController extends Controller
                 }
 
             });
-            return redirect()->route("admin.produk.view");
+            return redirect()->route("admin.produk.view")->with("success", 'berhasil menambah data');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -162,7 +162,8 @@ class produkController extends Controller
                 $produk->kategori()->sync($request->kategori);
 
             });
-            return redirect()->route("admin.produk.view")->with("success");
+            return redirect()->route("admin.produk.view")->with("success", 'berhasil menambah data');
+
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -184,7 +185,7 @@ class produkController extends Controller
 
         $prod->delete();
 
-        return redirect()->back()->with("success", "berhasil mengubah data");
+        return redirect()->back()->with("success", "berhasil menghapus data");
     }
 
 

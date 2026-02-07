@@ -21,7 +21,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('head_transaksi', function (Blueprint $table) {
-            $table->dropColumn('bukti', 100)->required();
+            $table->dropColumn('bukti')->required();
 
         });
     }

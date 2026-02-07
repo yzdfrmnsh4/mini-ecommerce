@@ -76,7 +76,6 @@ class produk extends Controller
             "qty" => 'required'
         ]);
 
-        dd($request->all());
 
         foreach ($request->qty as $key => $value) {
             # code...
