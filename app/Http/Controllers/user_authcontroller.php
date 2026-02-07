@@ -95,10 +95,10 @@ class user_authcontroller extends Controller
 
     public function pesanan_saya_view(request $request)
     {
-        $pesan = headTransaksi::with(['detail_transaksi']);
+        $pesan = headTransaksi::with(['detail_transaksi'])->where('id_user', Auth::user()->id);
         if ($request->status) {
             # code...
-            $pesan->where('id_user', Auth::user()->id)->where("status", $request->status);
+            $pesan->where("status", $request->status);
         }
 
         $data['pesanan'] = $pesan->get();
