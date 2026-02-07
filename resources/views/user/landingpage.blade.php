@@ -66,7 +66,7 @@
     <section id="produk" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-16">
-                <h2 class="text-5xl font-extrabold text-gray-900">Produk Unggulan</h2>
+                <h2 class="text-5xl font-extrabold text-gray-900">Produk</h2>
                 <a href="#" class="mt-4 md:mt-0 text-indigo-600 hover:text-indigo-800 font-semibold text-lg flex items-center gap-2">
                     Lihat Semua Koleksi
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
