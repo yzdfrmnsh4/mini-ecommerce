@@ -17,8 +17,7 @@ return new class extends Migration {
             $table->decimal("harga");
             $table->json("ukuran");
             $table->string("foto");
-            $table->unsignedBigInteger("kategori");
-            $table->foreign("kategori")->references("id")->on("kategori");
+
             $table->timestamps();
         });
     }

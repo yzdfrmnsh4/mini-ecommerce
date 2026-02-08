@@ -59,7 +59,7 @@ class userManagement extends Controller
                 "email" => "required|unique:users,email",
                 "name" => "required",
                 "password" => "confirmed",
-                "no_telp" => "required|unique:users,no_telp",
+                "no_telp" => "required|min:10|unique:users,no_telp",
                 "role" => "required",
 
             ]);

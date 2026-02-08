@@ -57,7 +57,7 @@ class user_authcontroller extends Controller
             "email" => "required|unique:users,email",
             "name" => "required",
             "password" => "required|confirmed",
-            "no_telp" => "required|unique:users,no_telp",
+            "no_telp" => "required|unique:users,no_telp|min:10"
 
         ]);
 
@@ -125,7 +125,7 @@ class user_authcontroller extends Controller
         $request->validate([
             "email" => "required|unique:users,email," . $id . ',id',
             "name" => "required",
-            "no_telp" => "required|unique:users,no_telp," . $id . ',id',
+            "no_telp" => "required|min:10|unique:users,no_telp," . $id . ',id',
             "password" => "nullable|confirmed",
 
         ]);
