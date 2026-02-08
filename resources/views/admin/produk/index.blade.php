@@ -168,6 +168,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="p-2">
+                        {{ $produk->withQueryString()->links('pagination::tailwind') }}
+                    </div>
                 </div>
 
                 <!-- Pagination -->
